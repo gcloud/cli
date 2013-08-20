@@ -1,7 +1,7 @@
 GCloud - Command Line Interface
 ===============================
 
-[GCloud](http://gcloud.io) compute package for could services.
+[GCloud](http://gcloud.io), Go Packages for Cloud Services.
 
 
 Usage
