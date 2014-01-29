@@ -6,9 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"flag"
+	//"fmt"
+
 	c "github.com/gcloud/compute"
-	p "github.com/gcloud/compute/providers"
-	_ "github.com/gcloud/compute/providers/vbox"
+	p "github.com/gcloud/providers"
+	_ "github.com/gcloud/providers/digitalocean"
+	_ "github.com/gcloud/providers/vbox"
 )
 
 var provider = flag.String("p", "vbox", "Provider to use for actions.")
@@ -24,7 +27,7 @@ func DoServers(provider string, method string) ([]byte, error) {
 		r, err := s.Show(*name)
 		return respond(r, err)
 	case "add":
-		r, err := s.Create(&p.Server{Name: *name})
+		r, err := s.Create(s.NewServer(p.Map{"name": *name}))
 		return respond(r, err)
 	case "destroy":
 		r, err := s.Destroy(*name)
